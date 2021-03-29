@@ -8,9 +8,14 @@ namespace Torres_de_Hanoi
 {
     class Disco
     {
-        
+
         public int Valor { get; set; }
-        
+
+
+       public Disco(int valor)
+        {
+            Valor = valor;
+        }
 
     }
 }
