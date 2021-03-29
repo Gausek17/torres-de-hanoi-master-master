@@ -38,7 +38,7 @@ namespace Torres_de_Hanoi
             Hanoi objetoHanoi = new Hanoi();//iniciamos Hanoi
 
             int resultado = objetoHanoi.iterativo(3, pilaInicial, pilaFinal, pilaAux);//definimos el resultado iterativo
-
+            
             Console.WriteLine("\nNumero de movimientos totales= " + resultado);//imprimimos por pantalla el numero de movimientos
             if (resultado == 7)//si el resultado es 7
             {
@@ -48,5 +48,5 @@ namespace Torres_de_Hanoi
 
             Console.ReadKey();//termina el programa
         }
-    }
+    }//fin de programa
 }

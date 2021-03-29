@@ -67,7 +67,7 @@ namespace Torres_de_Hanoi
             int numero_movimientos = 0;//inicializamos a 0 el numero de movimientos
             bool noSolucionado = true;//inicializamos un semaforo a verdadero de no solucionado
 
-            if (n % 2 != 0)//si el resto de n es diferente de 0
+            if (n % 2 != 0)//si es par
             {
                 while (noSolucionado)
                 {
@@ -104,7 +104,7 @@ namespace Torres_de_Hanoi
             }
 
 
-            if (n % 2 == 0)//si el resto de n es 0
+            if (n % 2 == 0)//si es par
             {
                 while (noSolucionado)
                 {
@@ -131,7 +131,7 @@ namespace Torres_de_Hanoi
                     numero_movimientos++;//añadimos un movimiento
 
                     if (fin.Size == n)//si tamtaño de fin es n
-                    {
+                    {   
                         noSolucionado = false;//semaforo a falso
                         break;
                     }

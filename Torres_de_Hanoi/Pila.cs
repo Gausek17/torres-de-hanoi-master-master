@@ -49,11 +49,11 @@ namespace Torres_de_Hanoi
                 Top = 0;//top valdrá 0
             }
 
-            else//si no
+            else//si no es 0
             {
 
 
-                extraido = Elementos[Size - 1];//extraido valdrá el tamaño menos uno
+                extraido = Elementos[Size - 1];//extraido valdrá el último disco que queda
                 Elementos.RemoveAt(Size - 1);//borramos el elemento de la posición
                 if (Size == 0)//si el tamaño es 0
                 {
@@ -61,7 +61,7 @@ namespace Torres_de_Hanoi
                 }
                 else//si no
                 {
-                    Top = Elementos[Size - 1].Valor;//top valdrá el tamaño menos uno
+                    Top = Elementos[Size - 1].Valor;//top valdrá el último disco que queda
 
                 }
 
