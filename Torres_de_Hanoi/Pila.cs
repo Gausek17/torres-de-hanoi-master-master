@@ -8,11 +8,11 @@ namespace Torres_de_Hanoi
 {
     class Pila
     {
-        public int Size { get { return Elementos.Count; } } //tamaño pila
+        public int Size { get { return Elementos.Count; } } //tamaño elementos pila
 
 
 
-        public int Top { get; set; }//declaramos top
+        public int Top { get; set; }//declaramos top(valor del disco que tiene)
 
 
 
@@ -23,12 +23,12 @@ namespace Torres_de_Hanoi
         {
 
 
-            Top = 0;//inicializamos top
-            Elementos = new List<Disco>();//elementos
+            Top = 0;//inicializamos top sin elementos
+            Elementos = new List<Disco>();//elementos de la lista disco
 
         }
 
-        public void push(Disco d)//apilar
+        public void push(Disco d)//apilar discos
         {
             Elementos.Add(d);//añadimos el disco
 

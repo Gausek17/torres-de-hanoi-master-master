@@ -140,12 +140,9 @@ namespace Torres_de_Hanoi
                 }
 
             }
-
-
-
+            
             return numero_movimientos;//devolvemos el numero de movimientos
         }
-
 
     }
 }
