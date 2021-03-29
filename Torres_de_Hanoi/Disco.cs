@@ -9,13 +9,13 @@ namespace Torres_de_Hanoi
     class Disco
     {
 
-        public int Valor { get; set; }
+        public int Valor { get; set; }//declaramos el disco
 
 
        public Disco(int valor)
         {
-            Valor = valor;
+            Valor = valor;//iniciamos el valor del disco
         }
 
-    }
+    }//fin clase disco
 }
