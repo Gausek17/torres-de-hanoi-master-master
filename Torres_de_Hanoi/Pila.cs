@@ -8,82 +8,85 @@ namespace Torres_de_Hanoi
 {
     class Pila
     {
-        public int Size { get { return Elementos.Count; } }
+        public int Size { get { return Elementos.Count; } } //tamaño pila
 
 
 
-        public int Top { get; set; }
+        public int Top { get; set; }//declaramos top
 
 
 
-        public List<Disco> Elementos { get; set; }
+        public List<Disco> Elementos { get; set; }//lista discos
 
 
-        public Pila()
+        public Pila()//constructor pila
         {
 
 
-            Top = 0;
-            Elementos = new List<Disco>();
+            Top = 0;//inicializamos top
+            Elementos = new List<Disco>();//elementos
 
         }
 
-        public void push(Disco d)
+        public void push(Disco d)//apilar
         {
-            Elementos.Add(d);
+            Elementos.Add(d);//añadimos el disco
 
-            Top = d.Valor;
+            Top = d.Valor;//cogemos el valor del disco
 
 
         }
+        
 
-        public Disco pop()
+        public Disco pop()//desapilar
         {
 
 
-            Disco extraido = null;
+            Disco extraido = null;//no hay disco extraido
 
-            if (Size == 0)
+            if (Size == 0)//si el tamaño es 0
             {
-                Top = 0;
+                Top = 0;//top valdrá 0
             }
 
-            else
+            else//si no
             {
 
 
-                extraido = Elementos[Size - 1];
-                Elementos.RemoveAt(Size - 1);
-                if (Size == 0)
+                extraido = Elementos[Size - 1];//extraido valdrá el tamaño menos uno
+                Elementos.RemoveAt(Size - 1);//borramos el elemento de la posición
+                if (Size == 0)//si el tamaño es 0
                 {
-                    Top = 0;
+                    Top = 0;//top es 0
                 }
-                else
+                else//si no
                 {
-                    Top = Elementos[Size - 1].Valor;
+                    Top = Elementos[Size - 1].Valor;//top valdrá el tamaño menos uno
 
                 }
 
             }
 
-            return extraido;
+            return extraido;//devolvemos el extraido
 
         }
 
-        public bool isEmpty()
+        public bool isEmpty()//si esta vacio
         {
 
 
-            if (Elementos.Count == 0)
+            if (Elementos.Count == 0)//si los elementos son 0
             {
-                return true;
+                return true;//devolvemos verdadero
             }
-            else
+            else//sino
             {
-                return false;
+                return false;//devolvemos false
             }
 
         }
 
-    }
+
+
+    }//final de la clase
 }
