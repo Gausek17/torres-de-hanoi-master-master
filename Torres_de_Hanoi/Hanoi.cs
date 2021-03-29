@@ -123,7 +123,7 @@ namespace Torres_de_Hanoi
 
                     if (fin.Size == n)//si tamaño de fin es igual a n
                     {
-                        noSolucionado = false;//semaforo a falso
+                        noSolucionado = false;//semaforow a falso
                         break;
                     }
 
