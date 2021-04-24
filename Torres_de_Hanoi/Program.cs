@@ -57,9 +57,9 @@ namespace Torres_de_Hanoi
                 Console.WriteLine("El resultado final fue de: " + h.iterativo(p1.Elementos.Count, p1, p2, p3) + " movimientos  (Metodo Iterativo)");
                 }
 
-                char d = Console.ReadLine()[0];
+                
                 //METODO RECURSIVO
-                if (d.Equals('2')) {
+                if (c.Equals('2')) {
                     recursivo = true;
                 Console.WriteLine("El resultado final fue de: " + h.recursivo(p1.Elementos.Count, p1, p2, p3) + " movimientos (Metodo Recursivo)");
             }
