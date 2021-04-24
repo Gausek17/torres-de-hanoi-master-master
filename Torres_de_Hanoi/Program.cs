@@ -8,45 +8,54 @@ namespace Torres_de_Hanoi
 {
     class Program
     {
+        //inicio Main
         static void Main(string[] args)
         {
-            //Iniciamos los discos según su tamaño
-            Disco discoPequenyo = new Disco(1);//disco pequeño
 
-            Disco discoMediano = new Disco(2);//disco mediano
+            bool follow = true;
 
-            Disco discoGrande = new Disco(3);//disco grande
+            Console.WriteLine("Inicio Programa TORRES DE HANOI");
 
-
-            // Iniciamos las pilas según su posición
-            Pila pilaInicial = new Pila();//primera pila
-
-            Pila pilaAux = new Pila();//segunda pila
-
-            Pila pilaFinal = new Pila();//tercera pila
-
-           
-            //Insertamos los discos en las pilas
-            pilaInicial.push(discoGrande);//ponemos disco grande en primera pila
-
-            pilaInicial.push(discoMediano);//ponemos disco mediano en primera pila
-
-            pilaInicial.push(discoPequenyo);//ponemos disco pequeño en primera pila
-
-
-            //Entramos en Hanoi y usamos sus metodos
-            Hanoi objetoHanoi = new Hanoi();//iniciamos Hanoi
-
-            int resultado = objetoHanoi.iterativo(3, pilaInicial, pilaFinal, pilaAux);//definimos el resultado iterativo
-            
-            Console.WriteLine("\nNumero de movimientos totales= " + resultado);//imprimimos por pantalla el numero de movimientos
-            if (resultado == 7)//si el resultado es 7
+            while (follow)
             {
+                // Pedimos al usuario el numero de discos
+                Console.WriteLine("Introduzca numero de piezas: ");
+                
+                //convertimos m en un numero entero
+                int n = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("\nEl programa va bien");//para comprobar si el programa funciona correctamente
+                // crear las 3 pilas y el objeto hanoi
+                Pila p1 = new Pila("INI");
+                Pila p2 = new Pila("FIN");
+                Pila p3 = new Pila("AUX");
+
+                Hanoi h = new Hanoi();
+
+                // añadir los n discos a la pila ini
+                for (int i = n; i >= 1; i--)
+                {
+                    p1.push(new Disco(i));
+                }
+
+                Console.WriteLine(p1.ToString());
+                Console.WriteLine(p3.ToString());
+                Console.WriteLine(p2.ToString());
+
+                Console.WriteLine("Se completo en: " + h.iterativo(p1.Elementos.Count, p1, p2, p3) + " movimientos");
+
+                //Console.WriteLine("Se completo en: " + h.recursivo(p1.Elementos.Count, p1, p2, p3) + " movimientos");
+
+                Console.WriteLine("El número mínimo de movimientos para " + n + " piezas es: " + (Math.Pow(2, n) - 1));
+
+                Console.WriteLine("Pulsa 'q' para salir o cualquier otra para repetir");
+                char c = Console.ReadLine()[0];
+                if (c.Equals('q'))
+                {
+                    follow = false;
+                }
             }
 
-            Console.ReadKey();//termina el programa
+
         }
-    }//fin de programa
+    }
 }
