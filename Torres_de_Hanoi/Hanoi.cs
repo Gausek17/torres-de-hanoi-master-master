@@ -76,7 +76,7 @@ namespace Torres_de_Hanoi
                     mover_disco(ini, fin);//movemos disco ini->fin
                     numero_movimientos++;//añadimos un movimiento
 
-                    if (fin.Size == n)//si el tamaño de fin es igual a n
+                    if (fin.Tamaño == n)//si el tamaño de fin es igual a n
                     {
                         noSolucionado = false;//semaforo a falso
                         break;
@@ -84,7 +84,7 @@ namespace Torres_de_Hanoi
 
                     mover_disco(ini, aux);//movemos disco ini->aux
                     numero_movimientos++;//añadimos un movimiento
-                    if (fin.Size == n)//si el tamaño de fin es igual a n
+                    if (fin.Tamaño == n)//si el tamaño de fin es igual a n
                     {
                         noSolucionado = false;//semaforo a falso
                         break;
@@ -92,7 +92,7 @@ namespace Torres_de_Hanoi
 
                     mover_disco(aux, fin);//movemos disco aux->fin
                     numero_movimientos++;//añadimos un movimiento
-                    if (fin.Size == n)//si el tamaño de fin es igual a n
+                    if (fin.Tamaño == n)//si el tamaño de fin es igual a n
                     {
                         noSolucionado = false;//semaforo a falso
                         break;
@@ -114,7 +114,7 @@ namespace Torres_de_Hanoi
                     
                     numero_movimientos++;//añadimos un movimiento
 
-                    if (fin.Size == n)//si el tamaño de fin es n
+                    if (fin.Tamaño == n)//si el tamaño de fin es n
                     {
                         noSolucionado = false;//semaforo falso
                         
@@ -125,7 +125,7 @@ namespace Torres_de_Hanoi
                     
                     numero_movimientos++;//añadimos un movimiento
 
-                    if (fin.Size == n)//si tamaño de fin es igual a n
+                    if (fin.Tamaño == n)//si tamaño de fin es igual a n
                     {
                         noSolucionado = false;//semaforow a falso
                         
@@ -136,7 +136,7 @@ namespace Torres_de_Hanoi
                     
                     numero_movimientos++;//añadimos un movimiento
 
-                    if (fin.Size == n)//si tamtaño de fin es n
+                    if (fin.Tamaño == n)//si tamtaño de fin es n
                     {   
                         noSolucionado = false;//semaforo a falso
                         

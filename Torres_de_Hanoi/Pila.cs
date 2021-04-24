@@ -8,85 +8,110 @@ namespace Torres_de_Hanoi
 {
     class Pila
     {
-        public int Size { get { return Elementos.Count; } } //tamaño elementos pila
+
+        //VARIABLES
+        private List<Disco> elementos;
+        private int top;
+        private string posicion;
 
 
+        //metodos
 
-        public int Top { get; set; }//declaramos top(valor del disco que tiene)
-
-
-
-        public List<Disco> Elementos { get; set; }//lista discos
-
-
-        public Pila()//constructor pila
+        // Cantidad de discos en la pila
+        public int Tamaño
         {
-
-
-            Top = 0;//inicializamos top sin elementos
-            Elementos = new List<Disco>();//elementos de la lista disco
-
+            get
+            {
+                return elementos.Count();
+            }
         }
 
-        public void push(Disco d)//apilar discos
+        public List<Disco> Elementos
         {
-            Elementos.Add(d);//añadimos el disco
-
-            Top = d.Valor;//cogemos el valor del disco
-
-
+            get
+            {
+                return elementos;
+            }
         }
+
+        // Para saber la posicion de la pila
+        public string Posicion
+        {
+            get
+            {
+                return posicion;
+            }
+            set
+            {
+                posicion = value;
+            }
+        }
+        // para el disco en el top de la pila saber el tamaño
+        public int Top
+        {
+            get { return top; }
+            set { top = value; }
+        }
+
         
-
-        public Disco pop()//desapilar
+        public Pila(string nombre)
         {
-
-
-            Disco extraido = null;//no hay disco extraido
-
-            if (Size == 0)//si el tamaño es 0
-            {
-                Top = 0;//top valdrá 0
-            }
-
-            else//si no es 0
-            {
-
-
-                extraido = Elementos[Size - 1];//extraido valdrá el último disco que queda
-                Elementos.RemoveAt(Size - 1);//borramos el elemento de la posición
-                if (Size == 0)//si el tamaño es 0
-                {
-                    Top = 0;//top es 0
-                }
-                else//si no
-                {
-                    Top = Elementos[Size - 1].Valor;//top valdrá el último disco que queda
-
-                }
-
-            }
-
-            return extraido;//devolvemos el extraido
-
+            this.posicion = nombre;//para saber en la posicion el nombre
+            top = -1;//al de top se le resta -1
+            elementos = new List<Disco>();//devolvemos una lista 
         }
 
-        public bool isEmpty()//si esta vacio
+        //Para sacar un disco
+        public Disco pop()
         {
-
-
-            if (Elementos.Count == 0)//si los elementos son 0
+            Disco discoExtraido = elementos.Last();
+            elementos.Remove(discoExtraido);
+            
+            if (!isEmpty())
             {
-                return true;//devolvemos verdadero
+                top = elementos.Last().Valor;
             }
-            else//sino
+            else
             {
-                return false;//devolvemos false
+                top = -1;// si al borrar el disco esta vacio se le resta 1 al top
             }
-
+            return discoExtraido;
         }
 
+        //Para añadir un disco
+        public void push(Disco d)
+        {
+            top = d.Valor;
+            elementos.Add(d);
+        }
 
+        //Si esta vacia la pila
+        public bool isEmpty()
+        {
 
-    }//final de la clase
+            return elementos.Count() == 0;
+        }
+
+        public string ToString()
+        {
+            //si esta vacia 
+            string res = posicion + ": ";
+            if (isEmpty())
+            {
+                res += "Vacia.";
+            }
+            else
+            {
+                foreach (Disco d in elementos)
+                {
+                    //sino esta vacio cogemos el valor
+                    res += d.Valor + ", ";
+                }
+            }
+
+            //devolvemos el resultado
+            return res;
+        }
+
+    }
 }
