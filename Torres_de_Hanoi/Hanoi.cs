@@ -4,153 +4,256 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Torres_de_Hanoi
 {
-
     class Hanoi
     {
 
-        //METODO MOVER_DISCO
+        //METODO PARA MOVER DISCO
         public void mover_disco(Pila a, Pila b)
         {
-            //Si hay una pila vacia
-            if (a.isEmpty() && b.Top != 0)//si a está vacio y b no es 0
+
+            
+            //SI A ESTA VACIO Y B NO
+            if (a.isEmpty() && !b.isEmpty())
             {
-                Disco discoMovido = b.pop();
-                a.push(discoMovido);//movemos el disco a A
-
-
-                Console.WriteLine("Movimiento de disco con valor: " + discoMovido.Valor);//imprimimos por pantalla
-
-
+                // MOVEMOS DE B A A
+                Disco dB = b.pop();//QUITAMOS EL DISCO DE B
+                a.push(dB);// LO PONEMOS EN A
+                
+                //ESCRIBIMOS EL MOVIMIENTO
+                Console.WriteLine("Se desplaza: " + dB.Valor + " de " + b.Posicion + " a " + a.Posicion);
 
             }
-            else if (!a.isEmpty() && b.isEmpty())//si a no está vacío y b está vacío
+
+            //SI A NO ESTA VACIO Y B ESTA VACIO
+            else if (!a.isEmpty() && b.isEmpty())
             {
-                Disco discoMovido = a.pop();
-                b.push(discoMovido);//movemos el disco a B
+                //MOVEMOS DE A A B
+                Disco dA = a.pop();//QUITAMOS EL DISCO DE A
+                b.push(dA);// LO PONEMOS EN B
 
-                Console.WriteLine("Movimiento de disco con valor: " + discoMovido.Valor);//imprimimos por pantalla
-
+                //ESCRIBIMOS EL MOVIMIENTO
+                Console.WriteLine("Se desplaza: " + dA.Valor + " de " + a.Posicion + " a " + b.Posicion);
             }
             else
             {
-                //dos pilas llenas
-                int inicio = a.Top;
-                int final = b.Top;
-                if (inicio > final)//si la pila inicial es mayor que la final
-                {
-                    //B->A
-                    Disco discoMovido = b.pop();
-                    a.push(discoMovido);//movemos el disco a A
+                //Inicamos topA y topB
+                int topA = a.Top;
+                int topB = b.Top;
 
-                    Console.WriteLine("Movimiento de disco con valor: " + discoMovido.Valor);//imprimimos por pantalla
+                //si el top de A es mayor que el top de B
+                if (topA > topB)
+                {
+                    
+                    // MOVEMOS DE B A A
+                    Disco dB = b.pop();//QUITAMOS EL DISCO DE B
+                    a.push(dB);// LO PONEMOS EN A
+
+                    //ESCRIBIMOS EL DESPLAZAMIENTO
+                    Console.WriteLine("Se desplaza: " + dB.Valor + " de " + b.Posicion + " a " + a.Posicion);
                 }
                 else
                 {
-                    //A->B
-                    Disco discoMovido = a.pop();
-                    b.push(discoMovido);//movemos el disco a B
+                    //MOVEMOS DE A A B
+                    Disco dA = a.pop();//QUITAMOS EL DISCO DE A
+                    b.push(dA);// LO PONEMOS EN B
 
-                    Console.WriteLine("Movimiento de disco con valor: " + discoMovido.Valor);//imprimimos por pantalla
+                    //ESCRIBIMOS EL DESPLAZAMIENTO
+                    Console.WriteLine("Se desplaza: " + dA.Valor + " de " + a.Posicion + " a " + b.Posicion);
                 }
+
+            }
+        }
+        //PARA COMPROBAR SOLUCION
+        private bool checkSolution(int n, Pila fin)
+        {
+            //SIN TODAS LAS PIEZAS = FALSE
+            if (fin.Tamaño != n)
+            {
+                return false;
             }
 
+            bool estaOrdenada = true;
 
-
+            // ORDEN CORRECTO
+            for (int i = fin.Elementos.Count; i < 1; i++)
+            {
+                if (fin.Elementos[i].Valor > fin.Elementos[i - 1].Valor)
+                {
+                    estaOrdenada = false;
+                    break;
+                }
+            }
+            //devolvemos si esta ordenada
+            return estaOrdenada;
         }
 
         //METODO ITERATIVO
         public int iterativo(int n, Pila ini, Pila fin, Pila aux)
         {
-            int numero_movimientos = 0;//inicializamos a 0 el numero de movimientos
-            bool noSolucionado = true;//inicializamos un semaforo a verdadero de no solucionado
 
-            if (n % 2 != 0)//si es par
-            {
-                while (noSolucionado)
-                {
-
-
-                    mover_disco(ini, fin);//movemos disco ini->fin
-                    numero_movimientos++;//añadimos un movimiento
-
-                    if (fin.Tamaño == n)//si el tamaño de fin es igual a n
-                    {
-                        noSolucionado = false;//semaforo a falso
-                        break;
-                    }
-
-                    mover_disco(ini, aux);//movemos disco ini->aux
-                    numero_movimientos++;//añadimos un movimiento
-                    if (fin.Tamaño == n)//si el tamaño de fin es igual a n
-                    {
-                        noSolucionado = false;//semaforo a falso
-                        break;
-                    }
-
-                    mover_disco(aux, fin);//movemos disco aux->fin
-                    numero_movimientos++;//añadimos un movimiento
-                    if (fin.Tamaño == n)//si el tamaño de fin es igual a n
-                    {
-                        noSolucionado = false;//semaforo a falso
-                        break;
-                    }
-
-
-                }
-
-            }
-
+            bool Solucion = false;
+            int movimientos = 0;
             
-            //si es par
-            if (n % 2 == 0)
+            // N IMPAR
+            if (n % 2 == 1)
             {
-                while (noSolucionado)
+                while (!Solucion)//mientras haya Solucion
                 {
-
-                    mover_disco(ini, fin);//movemos disco de ini->fin
+                    mover_disco(ini, fin);//movemos el disco
                     
-                    numero_movimientos++;//añadimos un movimiento
+                    movimientos++;//añadimos un movimiento
+                    
+                    //comprobamos solucion
+                    Solucion = checkSolution(n, fin);
 
-                    if (fin.Tamaño == n)//si el tamaño de fin es n
-                    {
-                        noSolucionado = false;//semaforo falso
-                        
-                        break;
+                    //imprimimos las pilas
+                    Console.WriteLine(ini.ToString());
+                    Console.WriteLine(aux.ToString());
+                    Console.WriteLine(fin.ToString());
+                    
+
+                    if (Solucion) { 
+                        break; //si es la solucion paramos
                     }
 
-                    mover_disco(ini, aux);//movemos el disco de ini->aux
-                    
-                    numero_movimientos++;//añadimos un movimiento
 
-                    if (fin.Tamaño == n)//si tamaño de fin es igual a n
-                    {
-                        noSolucionado = false;//semaforow a falso
-                        
-                        break;
+                    mover_disco(ini, aux);//movemos el disco
+
+                    movimientos++;//añadimos un movimiento
+
+                    //comprobamos solucion
+                    Solucion = checkSolution(n, fin);
+
+                    //imprimimos las pilas
+                    Console.WriteLine(ini.ToString());
+                    Console.WriteLine(aux.ToString());
+                    Console.WriteLine(fin.ToString());
+                    
+                    if (Solucion) { 
+                        break; //si es la solucion paramos
                     }
 
-                    mover_disco(aux, fin);//movemos el disco de aux->fin
-                    
-                    numero_movimientos++;//añadimos un movimiento
+                    mover_disco(aux, fin);//movemos el disco
 
-                    if (fin.Tamaño == n)//si tamtaño de fin es n
-                    {   
-                        noSolucionado = false;//semaforo a falso
-                        
-                        break;
+                    movimientos++;//añadimos un movimiento
+
+                    //comprobamos solucion
+                    Solucion = checkSolution(n, fin);
+                    
+                    //imprimimos las pilas
+                    Console.WriteLine(ini.ToString());
+                    Console.WriteLine(aux.ToString());
+                    Console.WriteLine(fin.ToString());
+                    
+                    if (Solucion) { 
+                        break; //si es la solucion paramos
+                    }
+                }
+
+            }
+            // N ES PAR
+            else
+            {
+                while (!Solucion)//no hay solucion
+                {
+                    mover_disco(ini, aux);//movemos el disco
+
+                    movimientos++;//añadimos un movimiento
+
+                    //Comprobamos la solucion
+                    Solucion = checkSolution(n, fin);
+
+                    //imprimimos las pilas
+                    Console.WriteLine(ini.ToString());
+                    Console.WriteLine(aux.ToString());
+                    Console.WriteLine(fin.ToString());
+                    
+                    if (Solucion) { 
+                        break;//si es la solucion paramos
+                    }
+
+                    mover_disco(ini, fin);//movemos el disco
+
+                    movimientos++;//añadimos un movimiento
+
+                    //Comprobamos la solucion
+                    Solucion = checkSolution(n, fin);
+
+                    //imprimimos las pilas
+                    Console.WriteLine(ini.ToString());
+                    Console.WriteLine(aux.ToString());
+                    Console.WriteLine(fin.ToString());
+                    
+                    if (Solucion) { 
+                        break; //si es la solucion paramos
+                    }
+
+                    mover_disco(aux, fin);//movemos el disco
+
+                    movimientos++;//añadimos un movimiento
+
+                    //Comprobamos la solucion
+                    Solucion = checkSolution(n, fin);
+
+                    //imprimimos las pilas
+                    Console.WriteLine(ini.ToString());
+                    Console.WriteLine(aux.ToString());
+                    Console.WriteLine(fin.ToString());
+                    
+                    if (Solucion) {
+                        break;//si es la solucion paramos
                     }
 
 
                 }
-
             }
-            //devolvemos el numero de movimientos
-            return numero_movimientos;
+
+            //DEVOLVEMOS MOVIMIENTOS TOTALES
+            return movimientos;
         }
 
+        //METODO RECURSIVO
+        public int recursivo(int n, Pila ini, Pila fin, Pila aux)
+        {
+            //declaramos movimientos a 0
+            int movimientos = 0;
+            if (n == 1)//si n es 1
+            {
+                mover_disco(ini, fin);//movemos el disco
+               
+                
+                movimientos++;//añadimos un movimiento
+
+
+                //imprimimos las pilas
+                Console.WriteLine(ini.ToString());
+                Console.WriteLine(aux.ToString());
+                Console.WriteLine(fin.ToString());
+            }
+            else//si no
+            {
+                recursivo(n - 1, ini, aux, fin);
+
+
+                mover_disco(ini, fin);//movemos el disco
+
+
+                movimientos++;//añadimos un movimiento
+
+                //imprimimos las pilas
+                Console.WriteLine(ini.ToString());
+                Console.WriteLine(aux.ToString());
+                Console.WriteLine(fin.ToString());
+
+                recursivo(n - 1, aux, fin, ini);
+            }
+
+            //DEVOLVEMOS MOVIMIENTOS TOTALES
+            return movimientos;
+        }
+
+        
     }
 }
-    

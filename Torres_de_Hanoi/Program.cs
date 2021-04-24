@@ -14,6 +14,9 @@ namespace Torres_de_Hanoi
             //por si el usuario quiere seguir con el programa
             bool continuar = true;
 
+            bool iterativo = false;
+            bool recursivo = false;
+
             Console.WriteLine("Inicio Programa TORRES DE HANOI");
 
             while (continuar)
@@ -45,16 +48,24 @@ namespace Torres_de_Hanoi
                 Console.WriteLine(p3.ToString());
                 Console.WriteLine(p2.ToString());
 
+                Console.WriteLine("Pulse '1' para usar el método iterativo y '2' el método recursivo");
+
+                char c = Console.ReadLine()[0];
                 //METODO ITERATIVO
+                if (c.Equals('1')) {
+                    iterativo = true;
                 Console.WriteLine("El resultado final fue de: " + h.iterativo(p1.Elementos.Count, p1, p2, p3) + " movimientos  (Metodo Iterativo)");
+                }
 
-
+                char d = Console.ReadLine()[0];
                 //METODO RECURSIVO
+                if (d.Equals('2')) {
+                    recursivo = true;
                 Console.WriteLine("El resultado final fue de: " + h.recursivo(p1.Elementos.Count, p1, p2, p3) + " movimientos (Metodo Recursivo)");
+            }
 
-                
-                //calculamos matemáticamente el resultado(dos elevado al numero de piezas menos uno
-                Console.WriteLine("La solución para " + n + " piezas es: " + (Math.Pow(2, n) - 1));
+            //calculamos matemáticamente el resultado(dos elevado al numero de piezas menos uno
+            Console.WriteLine("La solución para " + n + " piezas es: " + (Math.Pow(2, n) - 1));
 
 
                 //continuar con el programa
