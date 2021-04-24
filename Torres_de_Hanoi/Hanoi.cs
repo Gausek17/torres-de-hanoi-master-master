@@ -11,7 +11,7 @@ namespace Torres_de_Hanoi
     class Hanoi
     {
 
-
+        //METODO MOVER_DISCO
         public void mover_disco(Pila a, Pila b)
         {
             //Si hay una pila vacia
@@ -61,7 +61,7 @@ namespace Torres_de_Hanoi
 
         }
 
-
+        //METODO ITERATIVO
         public int iterativo(int n, Pila ini, Pila fin, Pila aux)
         {
             int numero_movimientos = 0;//inicializamos a 0 el numero de movimientos
@@ -103,36 +103,43 @@ namespace Torres_de_Hanoi
 
             }
 
-
-            if (n % 2 == 0)//si es par
+            
+            //si es par
+            if (n % 2 == 0)
             {
                 while (noSolucionado)
                 {
 
                     mover_disco(ini, fin);//movemos disco de ini->fin
+                    
                     numero_movimientos++;//añadimos un movimiento
 
                     if (fin.Size == n)//si el tamaño de fin es n
                     {
                         noSolucionado = false;//semaforo falso
+                        
                         break;
                     }
 
                     mover_disco(ini, aux);//movemos el disco de ini->aux
+                    
                     numero_movimientos++;//añadimos un movimiento
 
                     if (fin.Size == n)//si tamaño de fin es igual a n
                     {
                         noSolucionado = false;//semaforow a falso
+                        
                         break;
                     }
 
                     mover_disco(aux, fin);//movemos el disco de aux->fin
+                    
                     numero_movimientos++;//añadimos un movimiento
 
                     if (fin.Size == n)//si tamtaño de fin es n
                     {   
                         noSolucionado = false;//semaforo a falso
+                        
                         break;
                     }
 
@@ -140,8 +147,8 @@ namespace Torres_de_Hanoi
                 }
 
             }
-            
-            return numero_movimientos;//devolvemos el numero de movimientos
+            //devolvemos el numero de movimientos
+            return numero_movimientos;
         }
 
     }
