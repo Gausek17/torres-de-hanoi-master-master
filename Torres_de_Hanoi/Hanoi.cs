@@ -156,7 +156,7 @@ namespace Torres_de_Hanoi
             // N ES PAR
             else
             {
-                while (!Solucion)//no hay solucion
+                while (!Solucion)//mientras busquemos la solucion
                 {
                     mover_disco(ini, aux);//movemos el disco
 
