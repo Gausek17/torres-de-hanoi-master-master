@@ -30,11 +30,11 @@ namespace Torres_de_Hanoi
                 int n = Convert.ToInt32(Console.ReadLine());
 
                 // iniciamos las tres pilas
-                Pila p1 = new Pila("INI");
+                Pila p1 = new Pila("Pila INICIAL");
                 
-                Pila p2 = new Pila("FIN");
+                Pila p2 = new Pila("Pila FINAL");
                 
-                Pila p3 = new Pila("AUX");
+                Pila p3 = new Pila("Pila AUXILIAR");
 
                 Hanoi h = new Hanoi();
 
