@@ -99,7 +99,7 @@ namespace Torres_de_Hanoi
             // N IMPAR
             if (n % 2 == 1)
             {
-                while (!Solucion)//mientras haya Solucion
+                while (!Solucion)//mientras busquemos la Solucion
                 {
                     mover_disco(ini, fin);//movemos el disco
                     
